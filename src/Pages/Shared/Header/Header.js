@@ -25,8 +25,8 @@ const Header = () => {
                   />
                   <Button variant="outline-success">Search</Button>
                 </Form>
-            <Nav.Link as={Link} to='/service'>Services</Nav.Link>
-            <Nav.Link href="#deets">Login</Nav.Link>
+            <Nav.Link href="home#services">Services</Nav.Link>
+            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
             
           </Nav>
         </Navbar.Collapse>
