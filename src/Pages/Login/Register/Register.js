@@ -1,39 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import './Register.css';
-import { Toast } from "react-bootstrap";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../Shared/Loading/Loading";
 
 const Register = () =>{
+    const [agree, setAgree] =useState(false);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
-
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+      const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
     const navigateLogin = () =>{
         navigate('/login');
     }
     if(user){
-        navigate('/home');
+        console.log('user', user);
+    }
+    if(loading || updating){
+        return <Loading></Loading>
     }
 
-    const handleRegister= e=>{
+    const handleRegister= async(e)=>{
         e.preventDefault();
         const name = e.target.password.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmPassword.value;
         if(password !== confirmPassword){
-            <Toast>
-                <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-            </Toast>
+            alert("password didn't match")
         }
-        createUserWithEmailAndPassword(email, password);
+        
+       
+           await createUserWithEmailAndPassword(email, password);
+           await updateProfile({ displayName: name });
+           navigate('/home');
+        
+
+        // createUserWithEmailAndPassword(email, password, confirmPassword);
+        
 
     }
     return(
@@ -47,9 +57,9 @@ const Register = () =>{
                 <input type='password' name='password' placeholder='Enter your password' required></input>
                 <br></br>
                 <input type='password' name='confirmPassword' placeholder="Re'type Password" required></input>
-                <input type='checkbox' name='terms' id='terms'></input>
-                <label htmlFor="terms">Accept Travel Site terms and conditions</label>
-                <input className="w-50 mx-auto btn btn-danger mt-2" type='submit' value='Register'></input>
+                <input onClick={()=> setAgree(!agree)} type='checkbox' name='terms' id='terms'></input>
+                <label className={`ps-2 ${agree ? 'text-primary' : 'text-danger'}`} htmlFor="terms">Accept Travel Site terms and conditions</label>
+                <input disabled={!agree} className="w-50 mx-auto btn btn-danger mt-2" type='submit' value='Register'></input>
             </form>
             <p>Already have an account? <Link to='/login' className="text-danger pe-auto text-decoration-none"style={{cursor:'pointer'}} onClick={navigateLogin}>Please Login</Link></p>
             <SocialLogin></SocialLogin>
