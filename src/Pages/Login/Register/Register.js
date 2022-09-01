@@ -5,6 +5,7 @@ import auth from '../../../firebase.init';
 import './Register.css';
 import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../../Shared/Loading/Loading";
+import image from '../../../images/logo.png';
 
 const Register = () =>{
     const [agree, setAgree] =useState(false);
@@ -48,15 +49,15 @@ const Register = () =>{
     }
     return(
         <div className="register-form">
-            <h1 style={{textAlign: 'center'}}>please Register!!</h1>
+            <img className="w-50 mb-2" src={image}></img>
             <form onSubmit={handleRegister}>
-                <input type='text' name='name' placeholder='Your Name'></input>
+                <input type='text'className="form-control" name='name' placeholder='Your Name'></input>
                 <br></br>
-                <input type='email' name='email' placeholder='Enter your email' required></input>
+                <input type='email' className="form-control" name='email' placeholder='Enter your email' required></input>
                 <br></br>
-                <input type='password' name='password' placeholder='Enter your password' required></input>
+                <input type='password' className="form-control" name='password' placeholder='Enter your password' required></input>
                 <br></br>
-                <input type='password' name='confirmPassword' placeholder="Re'type Password" required></input>
+                <input type='password' className="form-control" name='confirmPassword' placeholder="Re'type Password" required></input>
                 <input onClick={()=> setAgree(!agree)} type='checkbox' name='terms' id='terms'></input>
                 <label className={`ps-2 ${agree ? 'text-primary' : 'text-danger'}`} htmlFor="terms">Accept Travel Site terms and conditions</label>
                 <input disabled={!agree} className="w-50 mx-auto btn btn-danger mt-2" type='submit' value='Register'></input>
@@ -69,3 +70,7 @@ const Register = () =>{
 
 
 export default Register;
+
+<div className="form-group">
+          <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Where to" />
+        </div>

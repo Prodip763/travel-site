@@ -7,6 +7,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../../Shared/Loading/Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import image from '../../../images/logo.png';
 
 
 const Login = () => {
@@ -66,7 +67,7 @@ const Login = () => {
 
     return (
         <div className="container w-50 mx-auto">
-            <h1>please Login!!</h1>
+            <img className="w-50 mb-2" src={image}></img>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control ref={emailRef} type="email" placeholder="Enter Your email" required />

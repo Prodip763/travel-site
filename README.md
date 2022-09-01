@@ -6,7 +6,7 @@ This project was React-Firebase with [Travel Site](https://github.com/facebook/c
  * Signin
  * Signout
  * About
- List of the technologies:
+ # List of the technologies:
  * React Router
  * Firebase
  * React firebase hooks
