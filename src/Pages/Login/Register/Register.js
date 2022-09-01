@@ -33,7 +33,7 @@ const Register = () =>{
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmPassword.value;
         if(password !== confirmPassword){
-            alert("password didn't match")
+            alert("password didn't match");
         }
         
        
