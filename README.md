@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Travel Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was React-Firebase with [Travel Site](https://github.com/facebook/create-react-app).
+ * Checkout function
+ * Service
+ * Signin
+ * Signout
+ * About
+ List of the technologies:
+ * React Router
+ * Firebase
+ * React firebase hooks
+ * React bootstrap
+ * Bootstrap
+ 
 
 ## Available Scripts
 
